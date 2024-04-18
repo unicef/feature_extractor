@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "capstone-project"
+version = "0.1.0"
+description = ""
+authors = ["aimedvedeva <alesan.med@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+torch = "^2.2.1"
+numpy = "^1.26.4"
+pandas = "^2.2.1"
+transformers = "^4.38.2"
+scikit-learn = "^1.4.1.post1"
+pillow = "^10.2.0"
+torchvision = "^0.17.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
