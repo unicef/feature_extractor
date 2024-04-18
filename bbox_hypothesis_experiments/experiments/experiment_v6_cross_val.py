@@ -12,7 +12,7 @@ from scipy import stats
 experiment_id = 6
 info = 'cross_val'
 # Set up logging to a file
-logging.basicConfig(filename=f'/work/alex.unicef/capstone_project/capstone_project/experiments/metrics_{experiment_id}_{info}.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename=f'/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/experiments/metrics_{experiment_id}_{info}.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
 random_seed = 42
 np.random.seed(random_seed)
@@ -21,18 +21,18 @@ np.random.seed(random_seed)
 school_images_path = '/work/alex.unicef/GeoAI/satellite_imagery/school'
 not_school_images_path = '/work/alex.unicef/GeoAI/satellite_imagery/not_school'
 
-data_not_schools = pd.read_csv('/work/alex.unicef/capstone_project/capstone_project/data/not_school_data.csv')
-data_schools = pd.read_csv('/work/alex.unicef/capstone_project/capstone_project/data/school_data.csv')
+data_not_schools = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/not_school_data.csv')
+data_schools = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/school_data.csv')
 
 
 # Loading embeddings
-not_school_embeddings_path = '/work/alex.unicef/capstone_project/capstone_project/data/embeddings/DYNOv2_original/not_school_embeds.npy'
+not_school_embeddings_path = '/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/embeddings/DYNOv2_original/not_school_embeds.npy'
 not_school_embeddings = np.load(not_school_embeddings_path)
 
-school_embeddings_path = '/work/alex.unicef/capstone_project/capstone_project/data/embeddings/DYNOv2_original/school_embeds.npy'
+school_embeddings_path = '/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/embeddings/DYNOv2_original/school_embeds.npy'
 school_embeddings = np.load(school_embeddings_path)
 
-school_embeddings_bbox_path = '/work/alex.unicef/capstone_project/capstone_project/data/embeddings/DYNOv2_bbox/school_embeds.npy'
+school_embeddings_bbox_path = '/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/embeddings/DYNOv2_bbox/school_embeds.npy'
 school_embeddings_bbox = np.load(school_embeddings_path)
 
 

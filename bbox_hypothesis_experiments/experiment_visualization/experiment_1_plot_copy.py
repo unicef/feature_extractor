@@ -7,7 +7,7 @@ precisions = []
 recalls = []
 
 # Read the log file
-filename_in = '/work/alex.unicef/capstone_project/capstone_project/experiments/metrics_1_cross_val_original.log'
+filename_in = '/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/experiments/metrics_1_cross_val_original.log'
 filename_out = 'experiment_v1_original.html'
 with open(filename_in, 'r') as file:
     lines = file.readlines()
@@ -32,4 +32,4 @@ fig.update_layout(title='original', xaxis_title='n', yaxis_title='Metrics')
 fig.show()
 
 # Save the plot as an HTML file
-fig.write_html(f'/work/alex.unicef/capstone_project/capstone_project/experiment_visualization/{filename_out}', auto_open=True)
+fig.write_html(f'/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/experiment_visualization/{filename_out}', auto_open=True)

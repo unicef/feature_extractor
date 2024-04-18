@@ -13,21 +13,21 @@ experiment_id = 1
 info = 'cross_val_bbox'
 
 # Set up logging to a file
-logging.basicConfig(filename=f'/work/alex.unicef/capstone_project/capstone_project/experiments/metrics_{experiment_id}_{info}.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename=f'/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/experiments/metrics_{experiment_id}_{info}.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
 random_seed = 42
 np.random.seed(random_seed)
 
 # Set paths 
-school_images_path = '/content/drive/MyDrive/GeoAI/satellite_imagery/school'
-not_school_images_path = '/content/drive/MyDrive/GeoAI/satellite_imagery/not_school'
+school_images_path = '/work/alex.unicef/GeoAI/satellite_imagery/school'
+not_school_images_path = '/work/alex.unicef/GeoAI/satellite_imagery/not_school'
 
 # Read data
-school_dataset = pd.read_csv('/work/alex.unicef/capstone_project/capstone_project/data/school_data.csv')
-school_embedds = np.load('/work/alex.unicef/capstone_project/capstone_project/data/embeddings/DYNOv2_bbox/school_embeds.npy')
+school_dataset = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/school_data.csv')
+school_embedds = np.load('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/embeddings/DYNOv2_bbox/school_embeds.npy')
 
-not_school_dataset = pd.read_csv('/work/alex.unicef/capstone_project/capstone_project/data/not_school_data.csv')
-not_school_embedds = np.load('/work/alex.unicef/capstone_project/capstone_project/data/embeddings/DYNOv2_original/not_school_embeds.npy')
+not_school_dataset = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/not_school_data.csv')
+not_school_embedds = np.load('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/embeddings/DYNOv2_original/not_school_embeds.npy')
 combined_embeddings = np.concatenate((not_school_embedds, school_embedds), axis=0)
 
 # Create a DataFrame with embeddings, labels, and indices
