@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "capstone-project"
+name = "feature_extractor"
 version = "0.1.0"
 description = ""
 authors = ["aimedvedeva <alesan.med@yandex.ru>"]
