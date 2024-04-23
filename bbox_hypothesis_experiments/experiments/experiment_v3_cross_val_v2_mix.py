@@ -71,7 +71,6 @@ for n in tqdm(range(10, N, delta)):
         items_df = items_df.drop(selected_indices)
         items_df = items_df[(items_df['proba'] > 0.5) & (items_df['proba'] < threshold)]
         less_sure_positive_indices = np.array(items_df.index)
-        less_sure_positive_indices = np.array(items_df.index)
         additional_indices = less_sure_positive_indices[:delta]
         selected_indices = np.concatenate([selected_indices, additional_indices])  
         df_train = df_train.drop(additional_indices)
