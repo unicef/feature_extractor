@@ -16,11 +16,13 @@ if __name__ == '__main__':
     mp.set_start_method('spawn')
 
 # path to metadata
-school_data = pd.read_csv('/work/alex.unicef/capstone_project/data_original_CLIP/school_data.csv')
+school_data = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/MNG/school_data.csv')
 # path to images
-images_path = '/work/alex.unicef/GeoAI/satellite_imagery/school/'
-# path to output
-output_path = '/work/alex.unicef/capstone_project/capstone_project/embeddings/tmp_output/school_embeds.npy'
+images_path = '/work/alex.unicef/raw_data/MNG/school/'
+output_path = '/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/embeddings/output/school_embeds.npy'
+height = 500
+width = 500
+
 
 """## Create custom augmentation"""
 class BboxCrop(object):
@@ -67,8 +69,8 @@ class SudanDataset(Dataset):
         return image
 
 dataset = SudanDataset(school_data, images_path, transform=transforms.Compose([
-    BboxCrop(),
-    transforms.Resize([256, 256])
+    #BboxCrop(),
+    transforms.Resize([height, width])
 ]))
 
 """## Create model class"""
@@ -114,4 +116,6 @@ feats_concatenated = np.concatenate(feats_cpu)
 assert feats_concatenated.shape[0] == len(school_data)
 
 # Save the concatenated numpy array
+print(f'files number:{len(school_data)}')
+print(f'embedds shape:{feats_concatenated.shape}')
 np.save(output_path, feats_concatenated)
