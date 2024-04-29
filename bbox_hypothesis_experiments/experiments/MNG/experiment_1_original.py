@@ -5,29 +5,38 @@ from sklearn.model_selection import cross_validate
 from sklearn.svm import LinearSVC
 from sklearn.metrics import f1_score, precision_score, recall_score, make_scorer
 import logging
+import os
 
 from tqdm import tqdm
+
+# Get the base directory dynamically
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Get the base directory by moving up two directories
+base_dir = os.path.dirname(os.path.dirname(current_dir))
+
+print(f'base dir = {base_dir}')
 
 # experiment id
 experiment_id = 1
 info = 'original'
 
 # Set up logging to a file
-logging.basicConfig(filename=f'/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/experiments/MNG/experiment_{experiment_id}_{info}.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename=base_dir+f'/experiments/MNG/experiment_{experiment_id}_{info}.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
 random_seed = 42
 np.random.seed(random_seed)
 
-# Set paths 
-school_images_path = '/work/alex.unicef/raw_data/MNG/school'
-not_school_images_path = '/work/alex.unicef/raw_data/MNG/non_school'
-
 # Read data
-school_dataset = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/MNG/school_data.csv')
-school_embedds = np.load('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/MNG/embeddings/DYNOv2_original/school_embeds.npy')
+school_data_path = base_dir +'/data/MNG/school_data.csv'
+school_embeds_path = base_dir +'/data/MNG/embeddings/DYNOv2_original/school_embeds.npy'
+not_school_data_path = base_dir + '/data/MNG/not_school_data.csv'
+not_school_embeds_path = base_dir + '/data/MNG/embeddings/DYNOv2_original/not_school_embeds.npy'
 
-not_school_dataset = pd.read_csv('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/MNG/not_school_data.csv')
-not_school_embedds = np.load('/work/alex.unicef/feature_extractor/bbox_hypothesis_experiments/data/MNG/embeddings/DYNOv2_original/not_school_embeds.npy')
+school_dataset = pd.read_csv(school_data_path)
+school_embedds = np.load(school_embeds_path)
+not_school_dataset = pd.read_csv(not_school_data_path)
+not_school_embedds = np.load(not_school_embeds_path)
 combined_embeddings = np.concatenate((not_school_embedds, school_embedds), axis=0)
 
 # Create a DataFrame with embeddings, labels, and indices
